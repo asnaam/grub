@@ -12,7 +12,8 @@ TOKEN = '8003231767:AAGewSQTTDGH64C1ADdW14OGWu4yqxmquY8'
 async def check_new_member(update: Update, context: CallbackContext):
     # Mendapatkan informasi member baru yang masuk
     for member in update.message.new_chat_members:
-        if not member.username:  # Jika member tidak memiliki username
+        # Pastikan member tidak memiliki username
+        if not member.username:  
             # Mengirim pesan pemberitahuan dan meng-kick member
             await context.bot.kick_chat_member(chat_id=update.message.chat.id, user_id=member.id)
             await context.bot.send_message(
